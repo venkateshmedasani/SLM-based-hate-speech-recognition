@@ -1,0 +1,20 @@
+# Data files (large, should be downloaded separately)
+data/hatexplain_raw.json
+data/*.pkl
+data/*.json
+
+# Keep CSV files as they're smaller
+# But if they're large, add them here too:
+# data/*.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Virtual environment
+venv/
+env/
+
+# OS
+.DS_Store
