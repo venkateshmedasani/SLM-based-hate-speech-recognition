@@ -1,14 +1,25 @@
+# Core: training (src/train.py), baselines and the Gradio demo
+# For GPU training install a CUDA build of torch first, e.g.
+#   pip install torch --index-url https://download.pytorch.org/whl/cu130
+torch>=2.6
+transformers>=5.0
+peft>=0.17
+accelerate
+datasets
+scikit-learn
 pandas
 numpy
 matplotlib
 seaborn
+gradio>=6.0
+huggingface_hub
+
+# Exploratory notebooks (01_eda_zero_shot_llama3.ipynb, 02_bert_tiny_baseline.ipynb)
+jupyter
+requests
 plotly
-scikit-learn
-torch
-transformers
+nbformat
 sentence-transformers
 umap-learn
-requests
-ollama
 wordcloud
-jupyter
+ollama
