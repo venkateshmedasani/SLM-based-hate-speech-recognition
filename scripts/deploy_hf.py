@@ -1,10 +1,10 @@
-"""Publish the trained adapter to the Hugging Face Hub and deploy the Gradio Space.
+"""Publish the trained adapter to the Hugging Face Hub (and optionally a Gradio Space).
 
 Prerequisite (once):  hf auth login   (token needs WRITE access)
 
 Usage:
-    python scripts/deploy_hf.py
-    python scripts/deploy_hf.py --model-repo my-adapter --space my-demo
+    python scripts/deploy_hf.py                  # model repo only (free)
+    python scripts/deploy_hf.py --with-space     # also a Gradio Space (needs HF PRO)
 """
 
 import argparse
@@ -83,6 +83,11 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--model-repo", default="tinyllama-hatexplain-lora")
     p.add_argument("--space", default="slm-hate-speech-detector")
+    p.add_argument(
+        "--with-space",
+        action="store_true",
+        help="also deploy the Gradio Space (Gradio Spaces require a Hugging Face PRO plan)",
+    )
     args = p.parse_args()
 
     if not (ADAPTER_DIR / "adapter_model.safetensors").exists():
@@ -106,6 +111,10 @@ def main():
         path_in_repo="README.md",
         commit_message="Add model card",
     )
+
+    if not args.with_space:
+        print(f"\nDone. Model: https://huggingface.co/{model_id}")
+        return
 
     print(f"Deploying Space -> https://huggingface.co/spaces/{space_id}")
     api.create_repo(space_id, repo_type="space", space_sdk="gradio", exist_ok=True)

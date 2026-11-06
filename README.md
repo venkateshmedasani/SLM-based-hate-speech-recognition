@@ -2,7 +2,7 @@
 
 Fine-tuning **TinyLlama-1.1B** with **LoRA** to classify social-media posts as **hate speech**, **offensive**, or **normal**, with word-level explanations, a reproducible training pipeline, and a live web demo.
 
-**[Try the live demo on Hugging Face Spaces](https://huggingface.co/spaces/venkateshmedasani/slm-hate-speech-detector)** &nbsp;|&nbsp; [Model weights](https://huggingface.co/venkateshmedasani/tinyllama-hatexplain-lora)
+[Model weights on Hugging Face](https://huggingface.co/venkateshmedasani/tinyllama-hatexplain-lora)
 
 ![Demo screenshot](assets/demo.png)
 
@@ -88,7 +88,8 @@ flowchart LR
 │   ├── train.py                  TinyLlama + LoRA fine-tuning and test evaluation
 │   ├── baselines.py              TF-IDF + NB / LogReg / SVM baselines
 │   └── text_utils.py             Shared text normalization and label maps
-├── scripts/deploy_hf.py          Publishes model + demo to the Hugging Face Hub
+├── scripts/deploy_hf.py          Publishes the trained adapter to the Hugging Face Hub
+├── deploy/oracle/setup.sh        One-command install of the demo on an Ubuntu server
 ├── 01_eda_zero_shot_llama3.ipynb Data download, EDA (UMAP, word clouds, rationales), zero-shot Llama3
 ├── 02_bert_tiny_baseline.ipynb   Early experiment: fine-tuning a 4M-param BERT-tiny
 ├── data/                         HateXplain processed data and train/val/test splits
@@ -128,6 +129,12 @@ python src/train.py         # about 25 min on an 8 GB GPU, writes models/ and re
 `python src/train.py --max-train 512 --epochs 1` runs a 1-minute smoke test. `python src/train.py --help` lists all hyperparameters.
 
 **Notebooks.** `02_bert_tiny_baseline.ipynb` was an early experiment: it fine-tunes the 4M-parameter `prajjwal1/bert-tiny` in about 4 minutes on CPU. It reaches 65–66% accuracy and 0.62 macro F1 on its own 3,846-post split (it filters low-agreement posts first), so it isn't in the table above. `01_eda_zero_shot_llama3.ipynb` downloads HateXplain, explores it, and regenerates the splits in `data/`. Its zero-shot section needs [Ollama](https://ollama.com) running with `ollama pull llama3`. A full zero-shot pass over the test set takes over an hour, so set `MAX_SAMPLES` for a quick check.
+
+**Self-host the demo.** On any Ubuntu 22.04/24.04 server with 6 GB or more of RAM (for example an Oracle Cloud Always Free VM), one command installs the app as an auto-restarting service behind a Caddy reverse proxy on port 80:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/venkateshmedasani/SLM-based-hate-speech-recognition/main/deploy/oracle/setup.sh | bash
+```
 
 ## Limitations and responsible use
 
