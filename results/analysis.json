@@ -1,0 +1,168 @@
+{
+  "dataset": {
+    "train": {
+      "posts": 16118,
+      "hate": 4987,
+      "normal": 6522,
+      "offensive": 4609,
+      "avg_words": 23.6
+    },
+    "val": {
+      "posts": 2015,
+      "hate": 623,
+      "normal": 816,
+      "offensive": 576,
+      "avg_words": 23.5
+    },
+    "test": {
+      "posts": 2015,
+      "hate": 624,
+      "normal": 815,
+      "offensive": 576,
+      "avg_words": 23.8
+    }
+  },
+  "per_class": {
+    "Llama3-8B zero-shot": {
+      "accuracy": 0.4,
+      "macro_f1": 0.3199,
+      "hate": {
+        "precision": 0.3572,
+        "recall": 0.9679,
+        "f1": 0.5218
+      },
+      "normal": {
+        "precision": 0.8144,
+        "recall": 0.1939,
+        "f1": 0.3132
+      },
+      "offensive": {
+        "precision": 0.3385,
+        "recall": 0.0764,
+        "f1": 0.1246
+      }
+    },
+    "TF-IDF + LogReg": {
+      "accuracy": 0.6303,
+      "macro_f1": 0.6211,
+      "hate": {
+        "precision": 0.6978,
+        "recall": 0.7067,
+        "f1": 0.7022
+      },
+      "normal": {
+        "precision": 0.6603,
+        "recall": 0.6798,
+        "f1": 0.6699
+      },
+      "offensive": {
+        "precision": 0.5055,
+        "recall": 0.4774,
+        "f1": 0.4911
+      }
+    },
+    "TinyLlama-1.1B + LoRA": {
+      "accuracy": 0.6769,
+      "macro_f1": 0.6709,
+      "hate": {
+        "precision": 0.7603,
+        "recall": 0.7676,
+        "f1": 0.764
+      },
+      "normal": {
+        "precision": 0.7507,
+        "recall": 0.6982,
+        "f1": 0.7235
+      },
+      "offensive": {
+        "precision": 0.504,
+        "recall": 0.5486,
+        "f1": 0.5254
+      }
+    }
+  },
+  "accuracy_by_annotator_agreement": {
+    "3/3 annotators agree": {
+      "posts": 997,
+      "Llama3-8B zero-shot": 0.4243,
+      "TF-IDF + LogReg": 0.7683,
+      "TinyLlama-1.1B + LoRA": 0.8084
+    },
+    "2/3 agree": {
+      "posts": 930,
+      "Llama3-8B zero-shot": 0.3774,
+      "TF-IDF + LogReg": 0.5204,
+      "TinyLlama-1.1B + LoRA": 0.571
+    },
+    "no majority (1/3)": {
+      "posts": 88,
+      "Llama3-8B zero-shot": 0.3636,
+      "TF-IDF + LogReg": 0.2273,
+      "TinyLlama-1.1B + LoRA": 0.3068
+    }
+  },
+  "accuracy_by_target_group": {
+    "African": {
+      "posts": 449,
+      "Llama3-8B zero-shot": 0.5947,
+      "TF-IDF + LogReg": 0.6392,
+      "TinyLlama-1.1B + LoRA": 0.6882
+    },
+    "Women": {
+      "posts": 394,
+      "Llama3-8B zero-shot": 0.3198,
+      "TF-IDF + LogReg": 0.5888,
+      "TinyLlama-1.1B + LoRA": 0.6599
+    },
+    "Islam": {
+      "posts": 333,
+      "Llama3-8B zero-shot": 0.5616,
+      "TF-IDF + LogReg": 0.5225,
+      "TinyLlama-1.1B + LoRA": 0.6306
+    },
+    "Jewish": {
+      "posts": 255,
+      "Llama3-8B zero-shot": 0.6157,
+      "TF-IDF + LogReg": 0.6392,
+      "TinyLlama-1.1B + LoRA": 0.6627
+    },
+    "Homosexual": {
+      "posts": 246,
+      "Llama3-8B zero-shot": 0.3943,
+      "TF-IDF + LogReg": 0.5163,
+      "TinyLlama-1.1B + LoRA": 0.5447
+    },
+    "Refugee": {
+      "posts": 183,
+      "Llama3-8B zero-shot": 0.4153,
+      "TF-IDF + LogReg": 0.5519,
+      "TinyLlama-1.1B + LoRA": 0.6612
+    }
+  },
+  "tinyllama_error_breakdown": {
+    "normal -> offensive": {
+      "count": 198,
+      "share_of_errors": 0.304
+    },
+    "offensive -> normal": {
+      "count": 157,
+      "share_of_errors": 0.241
+    },
+    "hate -> offensive": {
+      "count": 113,
+      "share_of_errors": 0.174
+    },
+    "offensive -> hate": {
+      "count": 103,
+      "share_of_errors": 0.158
+    },
+    "normal -> hate": {
+      "count": 48,
+      "share_of_errors": 0.074
+    },
+    "hate -> normal": {
+      "count": 32,
+      "share_of_errors": 0.049
+    }
+  }
+}

@@ -114,8 +114,7 @@ Type a post or pick an example. The word highlights show which words drove the d
 
 DISCLAIMER = """
 <small>Research demo only. The model reflects the biases and labelling choices of HateXplain
-and makes mistakes, particularly between *hate* and *offensive*. Inputs are not stored.
-Running on a free CPU, so the first request after the Space wakes up can take a little longer.</small>
+and makes mistakes, particularly between *hate* and *offensive*. Inputs are not stored.</small>
 """
 
 with gr.Blocks(title="SLM Hate Speech Detector") as demo:

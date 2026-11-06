@@ -1,14 +1,29 @@
 {
   "Naive Bayes": {
     "accuracy": 0.5762,
-    "macro_f1": 0.5003
+    "macro_f1": 0.5003,
+    "per_class_f1": {
+      "hate": 0.6294,
+      "normal": 0.6634,
+      "offensive": 0.2081
+    }
   },
   "Logistic Regression": {
     "accuracy": 0.6303,
-    "macro_f1": 0.6211
+    "macro_f1": 0.6211,
+    "per_class_f1": {
+      "hate": 0.7022,
+      "normal": 0.6699,
+      "offensive": 0.4911
+    }
   },
   "Linear SVM": {
     "accuracy": 0.6144,
-    "macro_f1": 0.5996
+    "macro_f1": 0.5996,
+    "per_class_f1": {
+      "hate": 0.6945,
+      "normal": 0.6659,
+      "offensive": 0.4384
+    }
   }
 }
